@@ -1,0 +1,14 @@
+.searchBox {
+    padding: 5px;
+    display: "flex";
+    justify-Content : "center";
+    padding: "30px"
+}
+
+.box [type=text] {
+    background-color: rgba(233, 231, 231, 0.932);
+    width: 450px;
+    height: 40px;
+    border-radius: 25px 25px 25px 25px;
+    border: none;
+}
