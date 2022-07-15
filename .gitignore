@@ -2,6 +2,7 @@
 
 # dependencies
 /.pnp
+.node_modeules
 .pnp.js
 
 # testing
