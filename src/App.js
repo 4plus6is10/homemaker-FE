@@ -6,7 +6,7 @@ import Footer from './Footer/Footer';
 import SearchResult from "./Search/SearchResult";
 import ProductDetailPage from "./DetailProductPage/ProductDetailPage"
 import Checkout from "./Cart/Checkout"
-import Detail from './Cart/Detail'
+import Detail from './Detail/Detail'
 
 function App() {
   return (
