@@ -5,7 +5,7 @@ import NavBar from "./NavBar/NavBar";
 import Footer from './Footer/Footer';
 import SearchResult from "./Search/SearchResult";
 import ProductDetailPage from "./DetailProductPage/ProductDetailPage"
-import Checkout from "./Checkout/Checkout"
+import Checkout from "./Cart/Checkout"
 
 function App() {
   return (
