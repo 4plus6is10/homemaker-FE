@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {Col, Card, Row } from "antd";
+import {Col, Row } from "antd";
+import Card from "./card";
 import {RocketOutlined} from '@ant-design/icons'
 import Meta from "antd/lib/card/Meta";
 import SimpleImageSlider from "react-simple-image-slider";
@@ -42,7 +43,7 @@ useEffect(() => {
   fetchProducts(body);
 },[]);
 
-const fetchProducts = async(body) => {
+const fetchProducts = async() => {
   const response = await fetch('/products',
   {
     method: 'get',
@@ -50,13 +51,12 @@ const fetchProducts = async(body) => {
         'Content-Type' : 'application/json',
       }
     })
-  console.log(response);
 
   let responseData = await response.json();
   const productId = responseData.userId;
 
   console.log(responseData);
-  responseData = responseData.slice(0,1);
+  responseData = responseData.slice(0,30);
 
   const productsData = [];
   for (const key in responseData) {
@@ -72,30 +72,21 @@ const fetchProducts = async(body) => {
     });
   }
   console.log(productsData);
-  if (response.data.success) {
-    if (body.loadMore) {
-      setProducts([...Products, ...response.data.productInfo]);
-    } else {
-      setProducts(response.data.productInfo);
-    }
-    setPostSize(response.data.postSize);
-  } else {
-    alert("불러오기에 실패했습니다.");
-  }
   setProducts(productsData);
 };
 
-  const renderCards = Products.map((product, id) => {
-    return (
-      <Col lg={6} md={8} xs={24} key={id}>
-        <Card 
-        //product _id로 주소를 만듬
-        cover={<a href={`/product/${product.id}`}></a>}>
-          <Meta title={product.title} description={`$${product.price}`} />
-        </Card>
-      </Col>
-    );
-  });
+
+  // const renderCards = Products.map((product, seq) => {
+  //   return (
+  //     <Col lg={6} md={8} xs={24} key={seq}>
+  //       <Card 
+  //       //product _id로 주소를 만듬
+  //       cover={<a href={`/product/${product.seq}`}></a>}>
+  //         <Meta title={product.title} description={`$${product.price}`} />
+  //       </Card>
+  //     </Col>
+  //   );
+  // });
 
   const loadMoreHandler = () => {
     let skip = Skip + Limit;
@@ -207,7 +198,8 @@ return (
       />
   </div>
   {/* Card */}
-  <Row gutter={[16, 16]}>{renderCards}</Row>
+  
+  <Row gutter={[16, 16]}>{Products}</Row>
 
   <br />
   {PostSize >= Limit && (

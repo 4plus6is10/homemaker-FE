@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from './Search.module.css'
+// import classes from './Search.module.css'
 import { Input } from "antd";
 
 
@@ -10,7 +10,6 @@ function SearchBar(props) {
 
   const searchHandler = (event) => {
     setSearchTerm(event.currentTarget.value);
-    //부모컴포넌트로 전달
     props.refreshFunction(event.currentTarget.value);
   };
 

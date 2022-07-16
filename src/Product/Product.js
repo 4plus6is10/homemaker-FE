@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import Card from '../Search/card';
 
 // const BASE_URL = "";
 
@@ -14,7 +15,13 @@ const Product = (props) => {
       imglink : props.imglink,
       category : props.category
     };
-    return {...product}
+    return (
+      <Card>
+        <ul>
+          <div> title={props.name}, description={`$${props.price}`} </div>
+        </ul>
+      </Card>
+    )
 }
 
 
