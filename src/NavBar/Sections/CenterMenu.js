@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 function CenterMenu(props) {
   return (
     <Menu mode={props.mode}>
-    <Menu.Item key="mail">
+    <Menu.Item>
         <SearchBar />
     </Menu.Item>
   </Menu>

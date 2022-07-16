@@ -5,11 +5,8 @@ import { Menu } from "antd";
 function RightMenu(props) {
   return (
     <Menu mode={props.mode}>
-    <Menu.Item key="mail">
+    <Menu.Item>
       <a href="/cart">Cart</a>
-    </Menu.Item>
-    <Menu.Item key="mail">
-      <a href="/detail">Test</a>
     </Menu.Item>
   </Menu>
   )

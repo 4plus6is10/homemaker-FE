@@ -25,6 +25,9 @@ function NavBar() {
         <div className="menu_left">
           <LeftMenu/>
         </div>
+        <div>
+          <CenterMenu />
+        </div>
         <div className="menu_rigth">
           <RightMenu/>
         </div>

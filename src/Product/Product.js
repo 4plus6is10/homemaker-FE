@@ -5,6 +5,7 @@ import React, { useContext } from 'react'
 const Product = (props) => {
 
     const product = {
+      id : props.id,
       seq: props.seq,
       name: props.name,
       asin: props.asin,
