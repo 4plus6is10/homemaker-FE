@@ -7,8 +7,8 @@ import SimpleImageSlider from "react-simple-image-slider";
 import CheckBox from "./Sections/CheckBox";
 import { continents, price } from "./Sections/Datas";
 import RadioBox from "./Sections/RadioBox";
-import SearchFeature from "./Sections/SearchFeature";
 import Product from "../Product/Product";
+import SearchBar from "../NavBar/Sections/SearchBar";
 
 function SearchResult() {
   const [products, setProducts] = useState([]);
@@ -39,10 +39,10 @@ useEffect(() => {
     limit: Limit,
   };
 
-  fetchProducts();
+  fetchProducts(body);
 },[]);
 
-const fetchProducts = async() => {
+const fetchProducts = async(body) => {
   const response = await fetch('/products',
   {
     method: 'get',
@@ -72,10 +72,73 @@ const fetchProducts = async() => {
     });
   }
   console.log(productsData);
+  if (response.data.success) {
+    if (body.loadMore) {
+      setProducts([...Products, ...response.data.productInfo]);
+    } else {
+      setProducts(response.data.productInfo);
+    }
+    setPostSize(response.data.postSize);
+  } else {
+    alert("불러오기에 실패했습니다.");
+  }
   setProducts(productsData);
 };
 
-    const handleFilters = (filters, category) => {
+  const renderCards = Products.map((product, id) => {
+    return (
+      <Col lg={6} md={8} xs={24} key={id}>
+        <Card 
+        //product _id로 주소를 만듬
+        cover={<a href={`/product/${product.id}`}></a>}>
+          <Meta title={product.title} description={`$${product.price}`} />
+        </Card>
+      </Col>
+    );
+  });
+
+  const loadMoreHandler = () => {
+    let skip = Skip + Limit;
+    // 더보기버튼 누를시 몇개더 나올지
+    //  0  +   8
+    //  8  +   8
+
+    let body = {
+      skip: skip,
+      limit: Limit,
+      loadMore: true,
+    };
+
+    fetchProducts(body);
+    setSkip(skip);
+  };
+
+  const showFilteredResults = (filters) => {
+    let body = {
+      skip: 0,
+      limit: Limit,
+      filters: filters,
+    };
+
+    fetchProducts(body);
+    setSkip(0);
+  };
+
+  //여기서 value 는 밑에 filter의 값
+  const handlePrice = (value) => {
+    const data = price;
+    let array = [];
+
+    for (let key in data) {
+      if (data[key]._id === parseInt(value, 10)) {
+        array = data[key].array;
+      }
+    }
+
+    return array;
+  };
+
+  const handleFilters = (filters, category) => {
     const newFilters = { ...Filters };
 
     newFilters[category] = filters;
@@ -93,75 +156,22 @@ const fetchProducts = async() => {
     showFilteredResults(newFilters);
     setFilters(newFilters);
   };
-
-  const renderCards = Products.map((product, id) => {
-    return (
-      <Col lg={6} md={8} xs={24} key={id}>
-        <Card 
-        //product _id로 주소를 만듬
-        cover={<a href={`/product/${product.id}`}></a>}>
-          <Meta title={product.title} description={`$${product.price}`} />
-        </Card>
-      </Col>
-    );
-  });
-
-  // const updateSearchTerm = (newSearchTerm) =>{
-  //   setSearchTerm(newSearchTerm)
-
-  //   let body = {
-  //     skip : 0,
-  //     limit: Limit,
-  //     filters: Filters,
-  //     searchTerm: newSearchTerm
-  //   }
-
-  //   setSkip(0)
-  //   setSearchTerm(newSearchTerm)
-  //   getProducts(body)
-
-  // }
-
-  const loadMoreHandler = () => {
-    let skip = Skip + Limit;
-    // 더보기버튼 누를시 몇개더 나올지
-    //  0  +   8
-    //  8  +   8
+  
+  const updateSearchTerm = (newSearchTerm) =>{
+    setSearchTerm(newSearchTerm)
 
     let body = {
-      skip: skip,
+      skip : 0,
       limit: Limit,
-      loadMore: true,
-    };
-
-    // setProducts(productsData);
-    setSkip(skip);
-  };
-
-  const showFilteredResults = (filters) => {
-    let body = {
-      skip: 0,
-      limit: Limit,
-      filters: filters,
-    };
-
-    // setProducts(productsData);
-    setSkip(0);
-  };
-
-  //여기서 value 는 밑에 filter의 값
-  const handlePrice = (value) => {
-    const data = price;
-    let array = [];
-
-    for (let key in data) {
-      if (data[key]._id === parseInt(value, 10)) {
-        array = data[key].array;
-      }
+      filters: Filters,
+      searchTerm: newSearchTerm
     }
 
-    return array;
-  };
+    setSkip(0)
+    setSearchTerm(newSearchTerm)
+    fetchProducts(body)
+
+  }
 
 return (
   <div style={{ width: "75%", margin: "3rem auto" }}>
@@ -191,11 +201,11 @@ return (
     </Col>
   </Row>
   {/* Search */}
-  {/* <div style={{display: "flex", justifyContent : "center", padding: "30px"}}>
-      <SearchFeature
+  <div style={{display: "flex", justifyContent : "center", padding: "30px"}}>
+      <SearchBar
           refreshFunction = { updateSearchTerm }
       />
-  </div> */}
+  </div>
   {/* Card */}
   <Row gutter={[16, 16]}>{renderCards}</Row>
 
