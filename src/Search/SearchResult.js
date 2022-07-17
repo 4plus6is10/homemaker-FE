@@ -21,6 +21,7 @@ function SearchResult() {
     price: [],
   });
   const [SearchTerm, setSearchTerm] = useState("")
+  
 
   const Products = products.map(product =>
     <Product
@@ -34,45 +35,59 @@ function SearchResult() {
         category = {product.category}
     />
 )
+// JsonParser jsonParser = new JsonParser();
+// JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
+
 useEffect(() => {
   let body = {
     skip: Skip,
     limit: Limit,
   };
 
-  fetchProducts(body);
+  getProducts(body);
 },[]);
 
-const fetchProducts = async() => {
-  const response = await fetch('/products',
-  {
-    method: 'get',
-      headers: {
-        'Content-Type' : 'application/json',
+// const getProducts = async() => {
+//   try {
+//     const response = await axios.get('/products',body)
+//     const responseData = response.data;
+//     // const productId = responseData.userId;
+
+//     console.log(responseData);
+//     // responseData = responseData.json();
+//     responseData = responseData.slice(0,30);
+//     const productsData = [];
+//     for (const key in responseData) {
+//       productsData.push({
+//         id: key,
+//         seq: responseData[key].seq,
+//         name: responseData[key].name,
+//         asin: responseData[key].asin,
+//         price: responseData[key].price,
+//         buylink: responseData[key].buylink,
+//         imglink: responseData[key].imglink,
+//         category: responseData[key].category,
+//       });
+//     }
+
+//     console.log(productsData);
+//     setProducts(productsData);
+//   } catch(err) {
+//     console.log("Error >>",err)
+//   }
+// };
+
+const getProducts = (Limit) => {
+  axios.get("/products", Limit).then((response) => {
+      if (Limit.loadMore) {
+        setProducts(...Products, ...response.data);
+      } else {
+        console.log(response.data)
+        setProducts(response.data);
       }
-    })
-
-  let responseData = await response.json();
-  const productId = responseData.userId;
-
-  console.log(responseData);
-  responseData = responseData.slice(0,30);
-
-  const productsData = [];
-  for (const key in responseData) {
-    productsData.push({
-      id: key,
-      seq: responseData[key].seq,
-      name: responseData[key].name,
-      asin: responseData[key].asin,
-      price: responseData[key].price,
-      buylink: responseData[key].buylink,
-      imglink: responseData[key].imglink,
-      category: responseData[key].category,
-    });
-  }
-  console.log(productsData);
-  setProducts(productsData);
+      setPostSize(response.data);
+    }
+  );
 };
 
 
@@ -100,7 +115,7 @@ const fetchProducts = async() => {
       loadMore: true,
     };
 
-    fetchProducts(body);
+    getProducts(body);
     setSkip(skip);
   };
 
@@ -111,7 +126,7 @@ const fetchProducts = async() => {
       filters: filters,
     };
 
-    fetchProducts(body);
+    getProducts(body);
     setSkip(0);
   };
 
@@ -160,8 +175,8 @@ const fetchProducts = async() => {
 
     setSkip(0)
     setSearchTerm(newSearchTerm)
-    fetchProducts(body)
-
+    getProducts(body)
+    console.log(true);
   }
 
 return (
