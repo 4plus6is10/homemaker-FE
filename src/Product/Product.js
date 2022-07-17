@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import Card from '../Search/card';
+import { Col } from "antd";
 
 // const BASE_URL = "";
 
@@ -16,11 +17,16 @@ const Product = (props) => {
       category : props.category
     };
     return (
+      <Col lg={6} md={8} xs={24}>
       <Card>
-        <ul>
-          <div> title={props.name}, description={`$${props.price}`} </div>
-        </ul>
+        <div>
+          <img src = {props.imglink} width = "20%" height = "20%"/>
+       <h4>이름 : {props.name}</h4>
+       <p>카테고리 : {props.category}</p>
+       <p>가격: {props.price}</p>
+        </div>
       </Card>
+      </Col>
     )
 }
 
