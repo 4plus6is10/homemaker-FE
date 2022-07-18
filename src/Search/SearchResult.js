@@ -21,8 +21,8 @@ function SearchResult() {
     price: [],
   });
   const [SearchTerm, setSearchTerm] = useState("")
+ 
   
-
   const Products = products.map(product =>
     <Product
         key = {product.id}
@@ -35,98 +35,75 @@ function SearchResult() {
         category = {product.category}
     />
 )
-// JsonParser jsonParser = new JsonParser();
-// JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 
 useEffect(() => {
-  let body = {
-    skip: Skip,
-    limit: Limit,
-  };
 
-  getProducts(body);
+  getProducts();
 },[]);
 
-// const getProducts = async() => {
-//   try {
-//     const response = await axios.get('/products',body)
-//     const responseData = response.data;
-//     // const productId = responseData.userId;
+const getProducts = async() => {
+  try {
+    const response = await axios.get('/products')
+    const responseData = response.data;
 
-//     console.log(responseData);
-//     // responseData = responseData.json();
-//     responseData = responseData.slice(0,30);
-//     const productsData = [];
-//     for (const key in responseData) {
-//       productsData.push({
-//         id: key,
-//         seq: responseData[key].seq,
-//         name: responseData[key].name,
-//         asin: responseData[key].asin,
-//         price: responseData[key].price,
-//         buylink: responseData[key].buylink,
-//         imglink: responseData[key].imglink,
-//         category: responseData[key].category,
-//       });
-//     }
-
-//     console.log(productsData);
-//     setProducts(productsData);
-//   } catch(err) {
-//     console.log("Error >>",err)
-//   }
-// };
-
-const getProducts = (Limit) => {
-  axios.get("/products", Limit).then((response) => {
-      if (Limit.loadMore) {
-        setProducts(...Products, ...response.data);
-      } else {
-        console.log(response.data)
-        setProducts(response.data);
-      }
-      setPostSize(response.data);
+    // responseData = responseData.json();
+    // responseData = responseData.slice(0,30);
+    const productsData = [];
+    for (const key in responseData) {
+      productsData.push({
+        id: key,
+        seq: responseData[key].seq,
+        name: responseData[key].name,
+        asin: responseData[key].asin,
+        price: responseData[key].price,
+        buylink: responseData[key].buylink,
+        imglink: responseData[key].imglink,
+        category: responseData[key].category,
+      });
     }
-  );
+    
+    setProducts(productsData);
+  } catch(err) {
+    console.log("Error >>",err)
+  }
 };
 
+// const getProducts = (Limit) => {
+//   axios.get("/products", Limit).then((response) => {
+//       if (Limit.loadMore) {
+//         setProducts(...Products, ...response.data);
+//       } else {
+//         console.log(response.data)
+//         setProducts(response.data);
+//       }
+//       setPostSize(response.data);
+//     }
+//   );
+// };
 
-  // const renderCards = Products.map((product, seq) => {
-  //   return (
-  //     <Col lg={6} md={8} xs={24} key={seq}>
-  //       <Card 
-  //       //product _id로 주소를 만듬
-  //       cover={<a href={`/product/${product.seq}`}></a>}>
-  //         <Meta title={product.title} description={`$${product.price}`} />
-  //       </Card>
-  //     </Col>
-  //   );
-  // });
 
+  // 1번: setProduct를 잘라서 저장하는 방법
+  // const loadMoreHandler = () => {
+  //   let skip = Skip + Limit
+    
+  //   axios.get('products').then((res)=> {
+  //     console.log(skip);
+  //     setProducts([...res.data.slice(0,skip)]);
+  //     setSkip(skip);
+  //   })
+  // };
+
+
+  // 2번: setProduct를 모두를 저장하는 방법
   const loadMoreHandler = () => {
     let skip = Skip + Limit;
-    // 더보기버튼 누를시 몇개더 나올지
-    //  0  +   8
-    //  8  +   8
-
-    let body = {
-      skip: skip,
-      limit: Limit,
-      loadMore: true,
-    };
-
-    getProducts(body);
+    console.log(skip);
     setSkip(skip);
   };
 
   const showFilteredResults = (filters) => {
-    let body = {
-      skip: 0,
-      limit: Limit,
-      filters: filters,
-    };
 
-    getProducts(body);
+    getProducts();
     setSkip(0);
   };
 
@@ -166,16 +143,9 @@ const getProducts = (Limit) => {
   const updateSearchTerm = (newSearchTerm) =>{
     setSearchTerm(newSearchTerm)
 
-    let body = {
-      skip : 0,
-      limit: Limit,
-      filters: Filters,
-      searchTerm: newSearchTerm
-    }
-
     setSkip(0)
     setSearchTerm(newSearchTerm)
-    getProducts(body)
+    getProducts()
     console.log(true);
   }
 
@@ -214,14 +184,15 @@ return (
   </div>
   {/* Card */}
   
-  <Row gutter={[16, 16]}>{Products}</Row>
+  <Row gutter={[16, 16]}>{Products.slice(0,Limit+Skip)}</Row>
 
   <br />
-  {PostSize >= Limit && (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    {/* <div style={{ display: "flex", justifyContent: "center" }}>
       <button onClick={loadMoreHandler}>더보기</button>
-    </div>
-  )}
+    </div> */}
+     <div style={{ display: "flex", justifyContent: "center" }}>
+          <button onClick={loadMoreHandler}>더보기</button>
+    </div>	
 </div>
 
 )
