@@ -10,6 +10,7 @@ import { continents, price } from "./Sections/Datas";
 import RadioBox from "./Sections/RadioBox";
 import Product from "../Product/Product";
 import SearchBar from "../NavBar/Sections/SearchBar";
+import { object } from "yup";
 
 function SearchResult() {
   const [products, setProducts] = useState([]);
@@ -61,7 +62,7 @@ const getProducts = async() => {
         category: responseData[key].category,
       });
     }
-    
+    console.log(productsData);
     setProducts(productsData);
   } catch(err) {
     console.log("Error >>",err)
@@ -143,10 +144,26 @@ const getProducts = async() => {
   const updateSearchTerm = (newSearchTerm) =>{
     setSearchTerm(newSearchTerm)
 
-    setSkip(0)
-    setSearchTerm(newSearchTerm)
     getProducts()
     console.log(true);
+  }
+
+  const onSearch = (e) => {
+    e.preventDefault();
+    if ( setSearchTerm === null || setSearchTerm === '') { //검색어가 없을 경우 전체 리스트 반환
+    axios.get('/products')
+      .then((res) => {
+        setProducts(res.data)
+      });
+    }else {
+      const arrProducts = Object.values(Products);
+      console.log(arrProducts[0].props.name.includes("Umbra"));
+      // console.log(typeof(arrProducts));
+      // console.log(arrProducts.filters((Product) => Product.props.name.includes("U")));
+      const searchData = Object.values(Products).filter((Product) => Product.props.name.includes(setSearchTerm));
+      setProducts(searchData)
+    }
+    setProducts('')
   }
 
 return (
@@ -178,9 +195,18 @@ return (
   </Row>
   {/* Search */}
   <div style={{display: "flex", justifyContent : "center", padding: "30px"}}>
+  {/* 검색창에 입력하는 도중 바뀌는건 어떻게? */}
+      <form onSubmit={e => onSearch(e)}> 
       <SearchBar
-          refreshFunction = { updateSearchTerm }
-      />
+          refreshFunction = { updateSearchTerm }/>
+      </form>
+      {/* <form onSubmit={e => onSearch(e)}>
+        <input
+          type="text"
+          value={updateSearchTerm}
+          placeholder="아이디를 검색하세요."
+          onChange={updateSearchTerm} />
+      </form> */}
   </div>
   {/* Card */}
   

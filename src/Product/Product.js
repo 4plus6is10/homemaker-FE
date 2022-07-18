@@ -23,7 +23,7 @@ const Product = (props) => {
     return (
       <Col lg={6} md={8} xs={24}>
       <Card>
-        <div key={props.id}>
+        <div key={product.id}>
           <a href={`/product/${product.id}`}>
             <img src = {props.imglink} width = "20%" height = "20%"/>
             <h4>Name : {props.name}</h4>
