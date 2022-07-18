@@ -187,9 +187,6 @@ return (
   <Row gutter={[16, 16]}>{Products.slice(0,Limit+Skip)}</Row>
 
   <br />
-    {/* <div style={{ display: "flex", justifyContent: "center" }}>
-      <button onClick={loadMoreHandler}>더보기</button>
-    </div> */}
      <div style={{ display: "flex", justifyContent: "center" }}>
           <button onClick={loadMoreHandler}>더보기</button>
     </div>	
