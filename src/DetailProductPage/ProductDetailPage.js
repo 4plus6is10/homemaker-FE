@@ -14,7 +14,7 @@ function DetailProductPage(props) {
 
   useEffect(() => {
     axios
-      .get(`/api/product/products_by_id?id = ${productId}&type=single`)
+      .get(`/product/products_by_id?id = ${productId}&type=single`)
       .then((response) => {
         if (response.data.success) {
           //콘솔로 무슨결과가옴?
