@@ -8,6 +8,9 @@ function RightMenu(props) {
     <Menu.Item>
       <a href="/cart">Cart</a>
     </Menu.Item>
+    <Menu.Item>
+      <a href="/detail">Test</a>
+    </Menu.Item>
   </Menu>
   )
 } 

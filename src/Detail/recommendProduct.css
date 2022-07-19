@@ -1,0 +1,12 @@
+.recommendProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.recommendProduct_image {
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+}

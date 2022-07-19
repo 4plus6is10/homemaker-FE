@@ -29,7 +29,6 @@ function Checkout() {
                     </h2>
                     
                     
-                    
                     <CheckoutProduct/>
                     <CheckoutProduct/>
                     <CheckoutProduct/>
