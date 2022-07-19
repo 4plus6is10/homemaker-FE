@@ -1,23 +1,32 @@
 import React from 'react'
 import './List.css'
-import photo2 from './product.jpg'
 import CurrencyFormat from 'react-currency-format'
 import Product from '../Product/Product'
 import Keywords from './Keywords'
 import TotalPayment from './TotalPayment'
+import { price } from '../Search/Sections/Datas'
+import { useStateValue } from '../StateProvider'
 
-const List = (props) => {
+
+function List({id, name, imglink, price, category, rating, buylink}) {
+    const [{basket}, dispatch] = useStateValue();
     
-    const product = {
-        id : props.id,
-        seq: props.seq,
-        name: props.name,
-        asin: props.asin,
-        price: props.price,
-        buylink : props.buylink,
-        imglink : props.imglink,
-        category : props.category
-      };
+const addToBasket = () => {
+    dispatch({
+        type: 'ADD_TO_BASKET',
+        item: {
+            id: id,
+            name: name,
+            imglink: imglink,
+            price: price,
+            category:category,
+            rating: rating,
+            buylink: buylink
+        },
+    });
+};
+
+console.log("장바구니확인", basket);
 
   return (
     <div className='container'>
@@ -26,24 +35,24 @@ const List = (props) => {
                 <div className='detail_image'>
                     <h2>이미지</h2>
                     <img className='detail_photo'
-                        src={props.imglink}
+                        src={imglink}
                         alt="" />
                 </div>
 
                 <div className='detail_info'>
                     <h3 className='detail_title'>
                         <h2>제품명</h2>
-                        {props.name}
+                        {name}
                     </h3>
 
                     <h3 className='detail_category'>
                         <h2>카테고리</h2>
-                        {props.category}
+                        {category}
                     </h3>
 
                     <h3 className='buylink'>
                         <h2>구매링크</h2>
-                        {props.buylink}
+                        {buylink}
                     </h3>
 
                 </div>
@@ -57,7 +66,7 @@ const List = (props) => {
                             renderText={(value) => (
                                 <>
                                     <p>
-                                        금액 : <strong> {props.price} </strong>
+                                        금액 : <strong> {price} </strong>
                                     </p>
                                 </>
                             )}
@@ -69,7 +78,7 @@ const List = (props) => {
                                 prefix={"$"}
                                 />
                         
-                        <button>Add</button>
+                        <button onClick={addToBasket}>Add</button>
                         
                     </div>
                         

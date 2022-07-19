@@ -1,6 +1,9 @@
 import React from 'react';
 import './Checkout.css'
 import photo1 from './amazonad.jpeg'
+import product1 from './product1.jpg'
+import product2 from './product2.jpg'
+import product3 from './product3.jpeg'
 import Subtotal from './Subtotal'
 import CheckoutProduct from './CheckoutProduct';
 
@@ -29,9 +32,12 @@ function Checkout() {
                     </h2>
                     
                     
-                    <CheckoutProduct/>
-                    <CheckoutProduct/>
-                    <CheckoutProduct/>
+                    <CheckoutProduct id="1" name="제품1"
+                    price={3000} imglink={product1} rating={2}/>
+                    <CheckoutProduct id="2" name="제품2"
+                    price={5000} imglink={product2} rating={4}/>
+                    <CheckoutProduct id="3" name="제품3"
+                    price={2000} imglink={product3} rating={3}/>
 
                 </div>
 

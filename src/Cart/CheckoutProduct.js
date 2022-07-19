@@ -1,7 +1,7 @@
 import React from 'react'
 import './CheckoutProduct.css'
 
-function CheckoutProduct({id, image, title, price, rating}) {
+function CheckoutProduct({id, name, imglink, price, rating}) {
     /*const [{basket}, dispatch] = useStateValue();
 
     const removeFromBasket = () => {
@@ -13,16 +13,16 @@ function CheckoutProduct({id, image, title, price, rating}) {
 */
   return (
     <div className="checkoutProduct">
-        <img className="checkoutProduct_image" src={image} alt=""/>
+        <img className="checkoutProduct_image" src={ imglink } alt=""/>
 
         <div className='checkoutProduct_info'>
             <p className='checkoutProduct_title'>
-                {title}
+                { name }
             </p>
 
             <p className='checkoutProduct_price'>
                 <small>₩</small>
-                <strong>{price}</strong>
+                <strong>{ price }</strong>
                 <small>원</small>
             </p>
 
@@ -30,7 +30,7 @@ function CheckoutProduct({id, image, title, price, rating}) {
                 {
                     Array(rating)
                         .fill()
-                        .map(() => (
+                        .map((_ , i) => (
                             <p>★</p>
                         ))
                 }                

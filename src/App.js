@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
-import NavBar from "./NavBar/NavBar";
+import Header from './NavBar/Sections/Header'
 import Footer from './Footer/Footer';
 import SearchResult from "./Search/SearchResult";
 import ProductDetailPage from "./DetailProductPage/ProductDetailPage"
@@ -11,7 +11,7 @@ import Detail from './Detail/Detail'
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />
+      <Header />
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Routes>
           <Route path="/" element={<SearchResult/>} />
