@@ -22,13 +22,17 @@ const Product = (props) => {
     };
     return (
       <Col lg={6} md={8} xs={24}>
-      <Card>
-        <div key={product.id}>
-          <a href={`/product/${product.id}`}>
+      <Card param = {Product.name}>
+        <div key={props.name}>
+          <a href={`/products/name?name=${props.name}`}>
             <img src = {props.imglink} width = "20%" height = "20%"/>
-            <h4>Name : {props.name}</h4>
+            {/* <img src={`/showImage?asin=${props.asin}.png`} width = "70%" height = "70%"/> */}
+            <h4>{props.name}</h4>
+            <br/>
+            <p>${props.price}</p>
+            <br/>
             <p>Category : {props.category}</p>
-            <p>Price: {props.price}</p>
+            <br/>
             <p>ID: {props.id}</p>
           </a>
         </div>

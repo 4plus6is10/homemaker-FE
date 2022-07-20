@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom'
 import axios from "axios";
 import ProductInfo from "./Sections/ProductInfo";
 import ProductImage from "./Sections/ProductImage";
 import { Row, Col } from "antd";
-import { useParams } from "react-router-dom";
+
 
 //왜 product를 못받아오는거지?!!!!!!!!!????????????????????????????????????????????????????????!?!??
 
-console.log("error")
 function DetailProductPage(props) {
-  const { productId } = useParams();
+  // let productName = props.match.params.name;
 
+  const {productName} = useParams();
+  console.log(productName);
   const [product, setProduct] = useState({});
-
+  
   useEffect(() => {
     axios
-      .get(`/product/products_by_id?id = ${productId}&type=single`)
-      .then((response) => {
-        if (response.data.success) {
-          //콘솔로 무슨결과가옴?
+    .get(`/products/name?name=${productName}`)
+    .then((response) => {
+      //콘솔로 무슨결과가옴?
+          console.log("error")
           console.log("response.data", response.data);
-          setProduct(response.data.product[0]);
-        } else {
-          alert("상세정보로딩에 실패했습니다.");
-        }
+          setProduct(response.data);
       });
   }, []);
   return (
@@ -37,7 +36,7 @@ function DetailProductPage(props) {
         <Col lg={12} sm={24}>
           {/* ProductImage */}
 
-          <ProductImage detail={product}/>
+          {/* <ProductImage detail={product}/> */}
         </Col>
 
         <Col lg={12} sm={24}>

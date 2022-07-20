@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 // import classes from './Search.module.css'
 import { Input } from "antd";
+import axios from "axios";
+import getProducts from "../../Search/SearchResult"
 
 
 const { Search } = Input;
 
 function SearchBar(props) {
   const [SearchTerm, setSearchTerm] = useState("");
+  const [Products, setProducts] = useState([]);
 
   const searchHandler = (event) => {
     setSearchTerm(event.currentTarget.value);
     props.refreshFunction(event.currentTarget.value);
-  };
+      axios.get('/products/keyword',{
+          params: {
+            keyword: SearchTerm
+          }
+      }).then((res)=> {setProducts(res.data)});
+      console.log(Products);
+      // getProducts();
+    }
 
   return (
     <div>
@@ -24,5 +34,4 @@ function SearchBar(props) {
     </div>
   );
 }
-
 export default SearchBar
