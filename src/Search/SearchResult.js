@@ -10,6 +10,7 @@ import { continents, price } from "./Sections/Datas";
 import RadioBox from "./Sections/RadioBox";
 import Product from "../Product/Product";
 import SearchBar from "../NavBar/Sections/SearchBar";
+import { object } from "yup";
 
 function SearchResult() {
   const [products, setProducts] = useState([]);
@@ -61,8 +62,8 @@ const getProducts = async() => {
         category: responseData[key].category,
       });
     }
-    
     setProducts(productsData);
+    console.log(productsData);
   } catch(err) {
     console.log("Error >>",err)
   }
@@ -142,12 +143,10 @@ const getProducts = async() => {
   
   const updateSearchTerm = (newSearchTerm) =>{
     setSearchTerm(newSearchTerm)
-
-    setSkip(0)
-    setSearchTerm(newSearchTerm)
-    getProducts()
-    console.log(true);
+    
+    getProducts();
   }
+
 
 return (
   <div style={{ width: "75%", margin: "3rem auto" }}>
@@ -178,9 +177,17 @@ return (
   </Row>
   {/* Search */}
   <div style={{display: "flex", justifyContent : "center", padding: "30px"}}>
+  {/* 검색창에 입력하는 도중 바뀌는건 어떻게? */}
       <SearchBar
-          refreshFunction = { updateSearchTerm }
-      />
+          refreshFunction = { updateSearchTerm }/>
+          
+      {/* <form onSubmit={e => onSearch(e)}>
+        <input
+          type="text"
+          value={updateSearchTerm}
+          placeholder="아이디를 검색하세요."
+          onChange={updateSearchTerm} />
+      </form> */}
   </div>
   {/* Card */}
   

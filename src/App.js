@@ -16,7 +16,7 @@ function App() {
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Routes>
           <Route path="/" element={<SearchResult/>} />
-          <Route path="/product/:productId" element={<ProductDetailPage product={Product}/>} />
+          <Route path="/products/:productName" element={<ProductDetailPage product={Product}/>} />
           {/* <Route path="/product" element={<ProductDetailPage/>} /> */}
           <Route path="/cart" element={<Checkout/>} />
         </Routes>
