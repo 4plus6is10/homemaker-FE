@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {Col, Row } from "antd";
-import Card from "./card";
+import Card from "./Search/card";
 import {RocketOutlined} from '@ant-design/icons'
 import Meta from "antd/lib/card/Meta";
 import SimpleImageSlider from "react-simple-image-slider";
-import CheckBox from "./Sections/CheckBox";
-import { continents, price } from "./Sections/Datas";
-import RadioBox from "./Sections/RadioBox";
-import Product from "../Product/Product";
-import SearchBar from "../NavBar/Sections/SearchBar";
+import CheckBox from "./Search/Sections/CheckBox";
+import { continents, price } from "./Search/Sections/Datas";
+import RadioBox from "./Search/Sections/RadioBox";
+import Product from "./Product/Product";
+import SearchBar from "./NavBar/Sections/SearchBar";
 import { object } from "yup";
 
 function Main() {
@@ -140,12 +140,6 @@ const getProducts = async() => {
     showFilteredResults(newFilters);
     setFilters(newFilters);
   };
-  
-  const updateSearchTerm = (newSearchTerm) =>{
-    setSearchTerm(newSearchTerm)
-    
-    getProducts();
-  }
 
 
 return (
@@ -176,23 +170,7 @@ return (
     </Col>
   </Row>
   {/* Search */}
-  <div style={{display: "flex", justifyContent : "center", padding: "30px"}}>
-  {/* 검색창에 입력하는 도중 바뀌는건 어떻게? */}
-      <SearchBar
-          refreshFunction = { updateSearchTerm }/>
-          
-      {/* <form onSubmit={e => onSearch(e)}>
-        <input
-          type="text"
-          value={updateSearchTerm}
-          placeholder="아이디를 검색하세요."
-          onChange={updateSearchTerm} />
-      </form> */}
-  </div>
-  {/* Card */}
-  
   <Row gutter={[16, 16]}>{Products.slice(0,Limit+Skip)}</Row>
-
   <br />
      <div style={{ display: "flex", justifyContent: "center" }}>
           <button onClick={loadMoreHandler}>더보기</button>

@@ -20,7 +20,6 @@ function SearchBar(props) {
           }
       }).then((res)=> {setProducts(res.data)});
       console.log(Products);
-      // getProducts();
     }
 
   return (
