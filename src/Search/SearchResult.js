@@ -44,7 +44,7 @@ useEffect(() => {
 
 const getProducts = async() => {
   try {
-    const response = await axios.get('/products')
+    const response = await axios.get(`/products/keyword?keyword=${props.name}`)
     const responseData = response.data;
 
     // responseData = responseData.json();
@@ -204,5 +204,3 @@ return (
 
 
 export default SearchResult
-
-

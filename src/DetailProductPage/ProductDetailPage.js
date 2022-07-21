@@ -1,35 +1,66 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios";
 import ProductInfo from "./Sections/ProductInfo";
 import ProductImage from "./Sections/ProductImage";
 import { Row, Col } from "antd";
 
-
+ 
 //왜 product를 못받아오는거지?!!!!!!!!!????????????????????????????????????????????????????????!?!??
 
-function DetailProductPage(props) {
+function ProductDetailPage(props) {
   // let productName = props.match.params.name;
+  let name  = useParams();
+  // let matchedproduct = props.name.find(function(product){
+  //   return props.name == name;
+  // });
 
-  const {productName} = useParams();
-  console.log(productName);
-  const [product, setProduct] = useState({});
+  console.log(name);
+
+  const [product, setProduct] = useState([]);
   
-  useEffect(() => {
-    axios
-    .get(`/products/name?name=${productName}`)
-    .then((response) => {
-      //콘솔로 무슨결과가옴?
-          console.log("error")
-          console.log("response.data", response.data);
-          setProduct(response.data);
-      });
-  }, []);
+  // let product = props.Products.find(function(product) {
+  //   return product.name = productName;
+    
+  // })
+  
+  // useEffect(() => {
+
+  //   getNameProducts();
+  // }, []);
+
+  // const getNameProducts = async() => {
+  //   try {
+  //     const response = await axios.get(`/products/name?name=${name}`)
+  //     const responseData = response.data;
+  
+  //     // responseData = responseData.json();
+  //     // responseData = responseData.slice(0,30);
+  //     const productsData = [];
+  //     for (const key in responseData) {
+  //       productsData.push({
+  //         id: key,
+  //         seq: responseData[key].seq,
+  //         name: responseData[key].name,
+  //         asin: responseData[key].asin,
+  //         price: responseData[key].price,
+  //         buylink: responseData[key].buylink,
+  //         imglink: responseData[key].imglink,
+  //         category: responseData[key].category,
+  //       });
+  //     }
+  //     setProduct(productsData);
+  //     console.log(productsData);
+  //   } catch(err) {
+  //     console.log("Error >>",err)
+  //   }
+  // };
+  
   return (
     <div style={{ width: "100%", padding: "3rem 4rem" }}>
       <br />
       <div stye={{ display: "flex", justifyContent: "center" }}>
-          {/* <h1>{product.title}</h1> */}
+          <h1>{props.name}</h1>
         </div>
       <br />
       <Row gutter={[16, 16]}>
@@ -49,4 +80,4 @@ function DetailProductPage(props) {
   );
 }
 
-export default DetailProductPage;
+export default ProductDetailPage;

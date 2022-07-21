@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import classes from './Search.module.css'
 import { Input } from "antd";
 import axios from "axios";
-import getProducts from "../../Search/SearchResult"
+
 
 
 const { Search } = Input;
