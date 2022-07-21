@@ -5,17 +5,17 @@ function ProductInfo(props) {
   return (
     <div>
       <Descriptions title="상품정보">
-        <Descriptions.Item label="Price">
+        <Descriptions.Item label="name">
+          {/* {props.product.name} */}
+        </Descriptions.Item>
+        <Descriptions.Item label="price">
           {/* {props.product.price} */}
         </Descriptions.Item>
-        <Descriptions.Item label="Sold">
-          {/* {props.product.sold} */}
+        <Descriptions.Item label="category">
+          {/* {props.product.category} */}
         </Descriptions.Item>
-        <Descriptions.Item label="view">
-          {props.product.views}
-        </Descriptions.Item>
-        <Descriptions.Item label="Description">
-          {props.product.description}
+        <Descriptions.Item label="buylink">
+          {/* {props.product.buylink} */}
         </Descriptions.Item>
       </Descriptions>
       <br />

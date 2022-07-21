@@ -7,6 +7,7 @@ import SearchResult from "./Search/SearchResult";
 import ProductDetailPage from "./DetailProductPage/ProductDetailPage"
 import Checkout from "./Cart/Checkout"
 import Detail from './Detail/Detail'
+import Product from './Product/Product';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Routes>
           <Route path="/" element={<SearchResult/>} />
+          <Route path="/products/:productName" element={<ProductDetailPage product={Product}/>} />
           {/* <Route path="/product" element={<ProductDetailPage/>} /> */}
           <Route path="/cart" element={<Checkout/>} />
           <Route path="/detail" element={<Detail/>} />

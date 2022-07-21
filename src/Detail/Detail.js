@@ -1,18 +1,18 @@
 import React from 'react'
 import './Detail.css'
-import List from './List'
-import Keywords from './Keywords'
 import Product from '../Product/Product'
-import recommendProduct from './recommendProduct'
+import PlaceOrder from './PlaceOrder'
 
 
 function Detail() {
   return (
     <div>
-        <List />
-        <Product />
-        <recommendProduct />
-        <Keywords />
+      <PlaceOrder />
+        <div className='recommendation'>
+          <h2> 추천 제품: </h2>
+          <Product />
+        </div>
+
     </div>
     
   )
