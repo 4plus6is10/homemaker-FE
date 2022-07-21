@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Card from '../Search/card';
 import { Col } from "antd";
-import Item from 'antd/lib/list/Item';
+import { Link } from 'react-router-dom';
 // import { useHistory, useParams } from 'react-router-dom';
 
 
@@ -20,11 +20,12 @@ const Product = (props) => {
       imglink : props.imglink,
       category : props.category
     };
+    console.log(props.name);
     return (
       <Col lg={6} md={8} xs={24}>
-      <Card param = {Product.name}>
+      <Card >
         <div key={props.name}>
-          <a href={`/products/name?name=${props.name}`}>
+        <Link to={'/products/name?name=Umbra%20Mini%20Waste%20Can%201-1/2%20Gallon%20with%20Swing%20Lid,%20White' }> 
             <img src = {props.imglink} width = "20%" height = "20%"/>
             {/* <img src={`/showImage?asin=${props.asin}.png`} width = "70%" height = "70%"/> */}
             <h4>{props.name}</h4>
@@ -34,7 +35,7 @@ const Product = (props) => {
             <p>Category : {props.category}</p>
             <br/>
             <p>ID: {props.id}</p>
-          </a>
+        </Link>
         </div>
       </Card>
       </Col>

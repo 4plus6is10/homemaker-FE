@@ -6,7 +6,7 @@ function ProductInfo(props) {
     <div>
       <Descriptions title="상품정보">
         <Descriptions.Item label="name">
-          {/* {props.product.name} */}
+          {props.name}
         </Descriptions.Item>
         <Descriptions.Item label="price">
           {/* {props.product.price} */}
@@ -22,9 +22,9 @@ function ProductInfo(props) {
       <br />
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button size="large" shape="round" type="danger" onClick>
+        {/* <Button size="large" shape="round" type="danger" onClick>
           스크랩
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
