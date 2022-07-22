@@ -16,12 +16,10 @@ function Main() {
   const [products, setProducts] = useState([]);
   const [Skip, setSkip] = useState(0);
   const [Limit, setLimit] = useState(8);
-  const [PostSize, setPostSize] = useState(0);
   const [Filters, setFilters] = useState({
     continents: [],
     price: [],
   });
-  const [SearchTerm, setSearchTerm] = useState("")
  
   
   const Products = products.map(product =>
@@ -46,9 +44,7 @@ const getProducts = async() => {
   try {
     const response = await axios.get('/products')
     const responseData = response.data;
-
-    // responseData = responseData.json();
-    // responseData = responseData.slice(0,30);
+    
     const productsData = [];
     for (const key in responseData) {
       productsData.push({
@@ -69,33 +65,6 @@ const getProducts = async() => {
   }
 };
 
-// const getProducts = (Limit) => {
-//   axios.get("/products", Limit).then((response) => {
-//       if (Limit.loadMore) {
-//         setProducts(...Products, ...response.data);
-//       } else {
-//         console.log(response.data)
-//         setProducts(response.data);
-//       }
-//       setPostSize(response.data);
-//     }
-//   );
-// };
-
-
-  // 1번: setProduct를 잘라서 저장하는 방법
-  // const loadMoreHandler = () => {
-  //   let skip = Skip + Limit
-    
-  //   axios.get('products').then((res)=> {
-  //     console.log(skip);
-  //     setProducts([...res.data.slice(0,skip)]);
-  //     setSkip(skip);
-  //   })
-  // };
-
-
-  // 2번: setProduct를 모두를 저장하는 방법
   const loadMoreHandler = () => {
     let skip = Skip + Limit;
     console.log(skip);

@@ -9,23 +9,12 @@ import { Link } from 'react-router-dom';
 
 // let {id} = useParams();
 const Product = (props) => {
-
-    const product = {
-      id : props.id,
-      seq: props.seq,
-      name: props.name,
-      asin: props.asin,
-      price: props.price,
-      buylink : props.buylink,
-      imglink : props.imglink,
-      category : props.category
-    };
-    console.log(props.name);
+    console.log(props.asin);
     return (
       <Col lg={6} md={8} xs={24}>
       <Card >
-        <div key={props.name}>
-        <Link to={'/products/name?name=Umbra%20Mini%20Waste%20Can%201-1/2%20Gallon%20with%20Swing%20Lid,%20White' }> 
+        <div key={props.asin}>
+        <Link to={`/products/${props.asin}` }> 
             <img src = {props.imglink} width = "20%" height = "20%"/>
             {/* <img src={`/showImage?asin=${props.asin}.png`} width = "70%" height = "70%"/> */}
             <h4>{props.name}</h4>
@@ -42,18 +31,6 @@ const Product = (props) => {
     )
 }
 
-
-    // await fetch(BASE_URL,
-    //     {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type' : 'application/json',
-    //       },
-    //       body: JSON.stringify({
-    //         // 
-    //       })
-    //     }
-    //   );
     
 
 
