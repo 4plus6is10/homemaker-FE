@@ -1,19 +1,17 @@
 import React from 'react';
 import './Checkout.css'
 import photo1 from './amazonad.jpeg'
+import product1 from './product1.jpg'
+import product2 from './product2.jpg'
+import product3 from './product3.jpeg'
 import Subtotal from './Subtotal'
 import CheckoutProduct from './CheckoutProduct';
+import { getBasketTotal } from '../Reducer';
+import {useStateValue} from '../StateProvider'
 
 function Checkout() {
 
-    /*const[{basket}, {dispatch}] = useStateValue();
-    
-    나중에 밑줄로 이동해야함
-    {basket.map(item => (
-                        <CheckoutProduct id={item.id} title={item.title} image={item.image}
-                        price={item.price} rating={item.rating} />
-                    ))}
-    */
+    const[{basket}, dispatch] = useStateValue();
 
     return (
         <div className="checkout"> 
@@ -28,11 +26,15 @@ function Checkout() {
                         장바구니
                     </h2>
                     
+                    {basket.map(item => (
+                        <CheckoutProduct id={item.id} name={item.name}
+                        price={item.price} imglink={item.imglink} rating={item.rating}/>
+                    ))}
+                    <CheckoutProduct id="1" name="테스트 1"
+                    price={3000} imglink={product1} rating={2}/>
+                    <CheckoutProduct id="2" name="테스트 2"
+                    price={5000} imglink={product2} rating={4}/>
                     
-                    
-                    <CheckoutProduct/>
-                    <CheckoutProduct/>
-                    <CheckoutProduct/>
 
                 </div>
 

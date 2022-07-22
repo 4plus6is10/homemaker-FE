@@ -17,6 +17,10 @@
     border-color: #a0b5dd #a5a5f3;
 }
 
+.checkoutProduct_rating {
+    display: flex;
+}
+
 .checkoutProduct_image {
     object-fit: contain;
     width: 180px;

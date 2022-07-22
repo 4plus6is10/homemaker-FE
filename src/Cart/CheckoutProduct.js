@@ -1,28 +1,29 @@
 import React from 'react'
 import './CheckoutProduct.css'
+import {useStateValue} from '../StateProvider'
 
-function CheckoutProduct({id, image, title, price, rating}) {
-    /*const [{basket}, dispatch] = useStateValue();
+function CheckoutProduct({id, name, imglink, price, rating}) {
+    const [{basket}, dispatch] = useStateValue();
 
-    const removeFromBasket = () => {
-        dispatch({
-            type:'REMOVE_FROM_BASKET',
-            id:id,
+const removeFromBasket = () => {
+    dispatch({
+        type:'REMOVE_FROM_BASKET',
+        id: id,
         })
-    }
-*/
+}
+
   return (
     <div className="checkoutProduct">
-        <img className="checkoutProduct_image" src={image} alt=""/>
+        <img className="checkoutProduct_image" src={ imglink } alt=""/>
 
         <div className='checkoutProduct_info'>
             <p className='checkoutProduct_title'>
-                {title}
+                { name }
             </p>
 
             <p className='checkoutProduct_price'>
                 <small>₩</small>
-                <strong>{price}</strong>
+                <strong>{ price }</strong>
                 <small>원</small>
             </p>
 
@@ -30,13 +31,13 @@ function CheckoutProduct({id, image, title, price, rating}) {
                 {
                     Array(rating)
                         .fill()
-                        .map(() => (
+                        .map((_ , i) => (
                             <p>★</p>
                         ))
                 }                
             </div>
 
-            <button onclick>삭제</button>
+            <button onclick={removeFromBasket}>삭제</button>
         </div>
 
     </div>
