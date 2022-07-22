@@ -6,7 +6,7 @@ function ProductInfo(props) {
     <div>
       <Descriptions title="상품정보">
         <Descriptions.Item label="name">
-          {props.name}
+          {props}
         </Descriptions.Item>
         <Descriptions.Item label="price">
           {/* {props.product.price} */}

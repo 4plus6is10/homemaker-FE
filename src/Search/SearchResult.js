@@ -3,7 +3,6 @@ import axios from "axios";
 import {Col, Row } from "antd";
 import {RocketOutlined} from '@ant-design/icons'
 import Product from "../Product/Product";
-import { Input } from "antd";
 
 function SearchResult() {
     const [products, setProducts] = useState([]);
