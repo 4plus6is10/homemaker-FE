@@ -3,6 +3,8 @@ import axios from "axios";
 import {Col, Row } from "antd";
 import {RocketOutlined} from '@ant-design/icons'
 import Product from "../Product/Product";
+import '../NavBar/Sections/Header.css';
+import SearchIcon from '@material-ui/icons/Search'
 
 function SearchResult() {
     const [products, setProducts] = useState([]);
@@ -49,13 +51,6 @@ function SearchResult() {
 
 return (
   <div style={{ width: "75%", margin: "3rem auto" }}>
-  <div style={{ textAlign: "center" }}>
-    <h2>
-      HomeMaker <RocketOutlined />
-    </h2>
-  </div>
-  <br />
-  <br />
   <div style={{display: "flex", justifyContent : "center", padding: "30px"}}>
   {/* 검색창에 입력하는 도중 바뀌는건 어떻게? */}    
       <form onSubmit={e => onSearch(e)}>
