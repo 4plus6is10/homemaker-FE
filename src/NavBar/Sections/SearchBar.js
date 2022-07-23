@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { Input } from "antd";
 import axios from "axios";
 
-
-
 const { Search } = Input;
 
 function SearchBar(props) {

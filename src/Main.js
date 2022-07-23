@@ -135,7 +135,7 @@ return (
     </Col>
   </Row>
   {/* 더보기 버튼 */}
-                      {Products.slice(0,Limit+Skip)}
+  <Row gutter={[16, 16]}>{Products.slice(0,Limit+Skip)}</Row>
   <br/>
      <div style={{ display: "flex", justifyContent: "center" }}>
           <button onClick={loadMoreHandler}>더보기</button>
