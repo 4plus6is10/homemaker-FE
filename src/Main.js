@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {Col, Row } from "antd";
-import Card from "./Search/card";
 import {RocketOutlined} from '@ant-design/icons'
-import Meta from "antd/lib/card/Meta";
-import SimpleImageSlider from "react-simple-image-slider";
 import CheckBox from "./Search/Sections/CheckBox";
 import { continents, price } from "./Search/Sections/Datas";
 import RadioBox from "./Search/Sections/RadioBox";
 import Product from "./Product/Product";
-import SearchBar from "./NavBar/Sections/SearchBar";
-import { object } from "yup";
+
 
 function Main() {
   const [products, setProducts] = useState([]);
@@ -65,19 +61,20 @@ const getProducts = async() => {
   }
 };
 
+  // 더보기 버튼 구현
   const loadMoreHandler = () => {
     let skip = Skip + Limit;
     console.log(skip);
     setSkip(skip);
   };
 
+  // 필터 구현
   const showFilteredResults = (filters) => {
-
     getProducts();
     setSkip(0);
   };
 
-  //여기서 value 는 밑에 filter의 값
+  // 여기서 value 는 밑에 filter의 값
   const handlePrice = (value) => {
     const data = price;
     let array = [];
@@ -115,7 +112,6 @@ return (
   <div style={{ width: "75%", margin: "3rem auto" }}>
   <div style={{ textAlign: "center" }}>
     <h2>
-      {" "}
       HomeMaker <RocketOutlined />
     </h2>
   </div>
@@ -138,9 +134,9 @@ return (
       />
     </Col>
   </Row>
-  {/* Search */}
-  <Row gutter={[16, 16]}>{Products.slice(0,Limit+Skip)}</Row>
-  <br />
+  {/* 더보기 버튼 */}
+                      {Products.slice(0,Limit+Skip)}
+  <br/>
      <div style={{ display: "flex", justifyContent: "center" }}>
           <button onClick={loadMoreHandler}>더보기</button>
     </div>	

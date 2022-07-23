@@ -17,12 +17,12 @@ function SearchResult() {
 
     const onSearch = (e) => {
         e.preventDefault();
-        if (search === null || search ==='') {
+        if (search === null || search ==='') { // 입력 안 할 시 전체 상품 출력
             axios.get('/products')
             .then((res)=> {setProducts(res.data)});
             console.log(products);
         }else {
-            axios.get(`/products/keyword?keyword=${search}`
+            axios.get(`/products/keyword?keyword=${search}` // 입력 키워드를 받아와서 product로 설정
             ).then((res)=> {setProducts(res.data)});
             console.log(products);
         }
@@ -51,7 +51,6 @@ return (
   <div style={{ width: "75%", margin: "3rem auto" }}>
   <div style={{ textAlign: "center" }}>
     <h2>
-      {" "}
       HomeMaker <RocketOutlined />
     </h2>
   </div>
@@ -68,7 +67,7 @@ return (
       </form>
   </div>
   <Row gutter={[16, 16]}>{Products.slice(0,Limit+Skip)}</Row>
-  <br />
+  <p/>
      <div style={{ display: "flex", justifyContent: "center" }}>
           <button onClick={loadMoreHandler}>더보기</button>
     </div>	

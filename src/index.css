@@ -19,7 +19,7 @@ code {
 }
 
 .app {
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
   justify-content: center;
   align-items: center;
