@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { useStateValue } from '../StateProvider'
 import productimage from './product.jpg'
 
+
+// {id, name, imglink, price, category, rating, buylink}를 props라 하고
 function PlaceOrder({id, name, imglink, price, category, rating, buylink}) {
 
     const [{basket}, dispatch] = useStateValue();
@@ -15,6 +17,7 @@ const addToBasket = () => {
     dispatch({
         type: 'ADD_TO_BASKET',
         item: {
+            // props.id라 명시해주면 같은 값 출력
             id: id,
             name: name,
             imglink: imglink,
@@ -30,19 +33,19 @@ const addToBasket = () => {
         <div>
              <Grid container>
                 <Grid item xs={5}>
-                    <img className="placeorder__image" src={productimage} />
+                    <img className="placeorder__image" src={imglink} />
                 </Grid>
                 <Grid item xs={4}>
                     <div className="placeholder__description">
                         <div style={{fontSize:"24px", lineHeight:"32px", fontWeight: 500}}>
-                        citari Office Rules Work As A Team Framed Canvas Wall Art Inspirational Wall Art for Office Motivational Quotes Wall Decor Modern Office Wall Decor
+                            {name}
                         </div>
 
                         <hr></hr>
                         <div>
-                            <div className="textgap">Price:	<span className="pricetag"> {price}</span></div>
+                            <div className="textgap">Price:	<span className="pricetag"> ${price}</span></div>
                             <div className="textgap">Category:	<span className="category"> {category}</span></div>
-                            <div className="textgap">Buylink:	<span className="buylink"> {buylink}</span></div>
+                            <div className="textgap">Buylink:	<span className="buylink"> <a href={buylink} target='_blank'>{buylink}</a></span></div>
                         </div>
                     </div>
                 </Grid>

@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios";
 import { Row, Col } from "antd";
-import Value from "./Value";
-
+import PlaceOrder from "./PlaceOrder";
+import RecommandProducts from "../Recommand/RecommandProducts"
 
 function ProductDetailPage(asin) {
 
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    getProductByName();
+    getProductByAsin();
   }, []);
 
-    const getProductByName = () => {
+    const getProductByAsin = () => {
         axios.get('/products/asin?asin='+asin)
         .then((res)=> {
           console.log(res.data);
@@ -21,7 +21,7 @@ function ProductDetailPage(asin) {
       }
 
       const Products = products.map(product =>
-        <Value
+        <PlaceOrder
             key = {product.id}
             seq = {product.seq}
             name = {product.name}
@@ -36,15 +36,19 @@ function ProductDetailPage(asin) {
   return Products;
 }
   
-function Path() {
+function Detail() {
 
   const {asin} = useParams();
   const Products = ProductDetailPage(asin);
 
   return (<>
     <div>
-        {Products}
+      {Products}
+        <div className='recommendation'>
+            <h2> 추천 제품: </h2>
+            <RecommandProducts/>
+    </div>
     </div>
   </>);
 }
-export default Path;
+export default Detail;
