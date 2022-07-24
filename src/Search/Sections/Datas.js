@@ -1,7 +1,7 @@
 const continents = [
     {
         "_id": 1,
-        "name": "Africa"
+        "name": "bath"
     },
     {
         "_id": 2,

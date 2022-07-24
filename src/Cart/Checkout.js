@@ -30,12 +30,6 @@ function Checkout() {
                         <CheckoutProduct id={item.id} name={item.name}
                         price={item.price} imglink={item.imglink} rating={item.rating}/>
                     ))}
-                    <CheckoutProduct id="1" name="테스트 1"
-                    price={3000} imglink={product1} rating={2}/>
-                    <CheckoutProduct id="2" name="테스트 2"
-                    price={5000} imglink={product2} rating={4}/>
-                    
-
                 </div>
 
             </div>

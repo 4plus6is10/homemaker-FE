@@ -22,9 +22,9 @@ const removeFromBasket = () => {
             </p>
 
             <p className='checkoutProduct_price'>
-                <small>₩</small>
-                <strong>{ price }</strong>
-                <small>원</small>
+                
+                <strong>price: ${price}</strong>
+                
             </p>
 
             <div className='checkoutProduct_rating'>
