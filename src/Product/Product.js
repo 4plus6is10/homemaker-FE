@@ -6,7 +6,7 @@ import { Card, Col,Row } from 'antd';
 const Product = (props) => {
     return (
       <Col lg={6} md={8} xs={24}>
-        <Card style={{border:"none"}}>
+        <Card style={{border :"none"}} key={props.asin}>
           <StyledCard className="card-item">
             <Link to={`/products/${props.asin}` }>
               <div className="card-image-wrapper">

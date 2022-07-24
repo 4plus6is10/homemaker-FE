@@ -20,11 +20,11 @@ function SearchResult() {
     const onSearch = (e) => {
         e.preventDefault();
         if (search === null || search ==='') { // 입력 안 할 시 전체 상품 출력
-            axios.get('/products')
+            axios.get('http://localhost:8092/products')
             .then((res)=> {setProducts(res.data)});
             console.log(products);
         }else {
-            axios.get(`/products/keyword?keyword=${search}` // 입력 키워드를 받아와서 product로 설정
+            axios.get(`http://localhost:8092/products/keyword?keyword=${search}` // 입력 키워드를 받아와서 product로 설정
             ).then((res)=> {setProducts(res.data)});
             console.log(products);
         }

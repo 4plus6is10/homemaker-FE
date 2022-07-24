@@ -38,7 +38,7 @@ useEffect(() => {
 
 const getProducts = async() => {
   try {
-    const response = await axios.get('/products')
+    const response = await axios.get('http://localhost:8092/products')
     const responseData = response.data;
     
     const productsData = [];
