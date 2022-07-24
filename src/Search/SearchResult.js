@@ -3,7 +3,6 @@ import axios from "axios";
 import {Col, Row } from "antd";
 import {RocketOutlined} from '@ant-design/icons'
 import Product from "../Product/Product";
-import '../NavBar/Sections/Header.css';
 import SearchIcon from '@material-ui/icons/Search'
 
 function SearchResult() {

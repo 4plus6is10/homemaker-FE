@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense} from "react";
 import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios";
 import { Row, Col } from "antd";
@@ -21,12 +21,13 @@ function RecommandProduct() {
           setRecommandAsins(res.data)});
     }
 
-    // const recommandAsinsList = recommandAsins && recommandAsins.map((menu) => (<li>{menu}</li>));
 
     return (
         <div>
-            {/* {recommandAsins} */}
-            <RecommandProductsDetail recommandAsins={recommandAsins}/>
+            {/* <Suspense fallback={<div>loading...</div>}> */}
+                <RecommandProductsDetail asin={asin}/>
+                {/* <RecommandProductsDetail /> */}
+            {/* </Suspense> */}
         </div>
     );
 }

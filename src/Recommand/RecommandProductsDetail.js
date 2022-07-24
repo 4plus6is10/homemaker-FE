@@ -9,50 +9,45 @@ import RecommandProduct from './RecommandProduct';
 // import { useHistory, useParams } from 'react-router-dom';
 
 // 수정필요
-function RecommandProductsDetail({recommandAsins}){
-  
-  console.log(recommandAsins);
+function RecommandProductsDetail(){
+  const {asin} = useParams();
+  console.log(asin);
   const [recommandProducts,setRecommandProducts] = useState([]);
 
-  // useEffect(() => {
-  //   const results = recommandAsins && recommandAsins.reduce((prevPrms, recommandAsin) => (
-  //     prevPrms.then(async prevRes => { 
-  //       const currRes = await axios.get('http://localhost:5000/recoProducts/asin?asin='+recommandAsin)
-  //       return [...prevRes, currRes]
-  //       })
-  //       ), Promise.resolve([])) 
-        
-  //       results.then(data => {
-  //         setRecommandProducts(data)
-  //         console.log(data);
-  //       })
-  //   // rendering();
-  // }, []);
-  // const rendering = () => {
-  //   const result =[];
-  //   for (let i = 0; i <recommandAsins.length; i++){
-  //     result.push(axios.get('http://localhost:5000/recoProducts/asin?asin='+i));
-  //   }
-  //   console.log(result);
-  //   return result;
-//       const RecommandProducts = recommandProducts.map(recommandProduct =>
-//         <Product
-//         key = {recommandProduct.id}
-//         seq = {recommandProduct.seq}
-//         name = {recommandProduct.name}
-//         asin = {recommandProduct.asin}
-//         price = {recommandProduct.price}
-//         buylink = {recommandProduct.buylink}
-//         imglink = {recommandProduct.imglink}
-//         category = {recommandProduct.category}
-//     />
-// )
+  useEffect(() => {
+    getRecommandProduct1();
+    // getRecommandProductsByAsin()
+  }, []);
 
+  //     const getRecommandProductsByAsin = () => {
+  //       axios.get('http://localhost:8092/products/asin?asin='+ recommandAsins[0])
+  //         .then((res)=> {
+  //         setRecommandProducts(res.data);
+  //         console.log(recommandProducts);});
+  // }
+
+      const getRecommandProduct1 =() =>{ axios.get('http://localhost:8092/products/asin?asin='+asin)
+          .then((res)=> {
+            setRecommandProducts(res.data);});
+          }
+      
+          const RecommandProducts = recommandProducts.map(recommandProduct =>
+            <Product
+            key = {recommandProduct.id}
+            seq = {recommandProduct.seq}
+            name = {recommandProduct.name}
+            asin = {recommandProduct.asin}
+            price = {recommandProduct.price}
+            buylink = {recommandProduct.buylink}
+            imglink = {recommandProduct.imglink}
+            category = {recommandProduct.category}
+        />
+    )
     return (
       <div>
-        {recommandProducts}
+        {RecommandProducts}
       </div>
-  )
+     )
 }
 
 

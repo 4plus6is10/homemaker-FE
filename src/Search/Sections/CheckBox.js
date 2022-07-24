@@ -45,7 +45,7 @@ const CheckBox = (props) => {
     <div>
     {/*  defaultActiveKey 를 1로하면 디폴트로 펼쳐져있고 0으로하면 접혀있음*/}
       <Collapse defaultActiveKey={["0"]}>
-        <Panel header="키워드" key="1">
+        <Panel header="Keyword" key="1">
           {renderCheckboxLists()}
         </Panel>
       </Collapse>
