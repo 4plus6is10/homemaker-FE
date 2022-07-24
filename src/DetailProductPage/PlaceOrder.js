@@ -9,7 +9,7 @@ import productimage from './product.jpg'
 
 
 // {id, name, imglink, price, category, rating, buylink}를 props라 하고
-function PlaceOrder({id, name, imglink, price, category, rating, buylink}) {
+function PlaceOrder({id, name, imglink, price, category, rating, buylink, asin}) {
 
     const [{basket}, dispatch] = useStateValue();
     
@@ -18,13 +18,15 @@ const addToBasket = () => {
         type: 'ADD_TO_BASKET',
         item: {
             // props.id라 명시해주면 같은 값 출력
+            key : id,
             id: id,
             name: name,
             imglink: imglink,
             price: price,
             category:category,
             rating: rating,
-            buylink: buylink
+            buylink: buylink,
+            asin:asin
         },
     });
 };
@@ -46,6 +48,7 @@ const addToBasket = () => {
                             <div className="textgap">Price:	<span className="pricetag"> ${price}</span></div>
                             <div className="textgap">Category:	<span className="category"> {category}</span></div>
                             <div className="textgap">Buylink:	<span className="buylink"> <a href={buylink} target='_blank'>{buylink}</a></span></div>
+                            <div className="textgap">wordcloud:   <span className="wordcloud"> <img src={`/showImage?asin=${asin}.png`} width = "70%" height = "70%"/></span></div>
                         </div>
                     </div>
                 </Grid>

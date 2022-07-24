@@ -3,20 +3,19 @@ import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios";
 import { Row, Col } from "antd";
 import PlaceOrder from "./PlaceOrder";
-import RecommandProducts from "../Recommand/RecommandProducts"
+import RecommandProduct from "../Recommand/RecommandProduct"
 
 function ProductDetailPage(asin) {
 
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     getProductByAsin();
   }, []);
 
     const getProductByAsin = () => {
-        axios.get('/products/asin?asin='+asin)
+        axios.get('http://localhost:8092/products/asin?asin='+asin)
         .then((res)=> {
-          console.log(res.data);
-          console.log(res.data[0]);
           setProducts(res.data)});
       }
 
@@ -32,21 +31,25 @@ function ProductDetailPage(asin) {
             category = {product.category}
         />
     )
+    return Products;
 
-  return Products;
 }
-  
+
 function Detail() {
 
   const {asin} = useParams();
   const Products = ProductDetailPage(asin);
+  // const recommandAsins = ProductDetailPage(asin);
 
   return (<>
     <div>
       {Products}
         <div className='recommendation'>
             <h2> 추천 제품: </h2>
-            <RecommandProducts/>
+            <RecommandProduct asin={asin}/>
+            {/* {recommandAsins && recommandAsins.map((recommandAsin)=> (
+            <RecommandProductsDetail recommandAsin={recommandAsin}/>
+            ))} */}
     </div>
     </div>
   </>);
