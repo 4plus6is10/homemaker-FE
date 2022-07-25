@@ -12,21 +12,14 @@
     width: 100px;
     object-fit: contain;
     margin: 0 20px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
 .header_search {
     display: flex;
-    flex: 1;
+    flex: 2;
     align-items: center;
     border-radius: 20px;
-}
-
-.header_searchInput {
-    height: 12px;
-    padding: 10px;
-    border: none;
-    width: 15%;
 }
 
 .header_searchIcon {

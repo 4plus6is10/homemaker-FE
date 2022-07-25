@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Suspense} from "react";
 import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios";
-import { Row, Col } from "antd";
 import PlaceOrder from "./PlaceOrder";
 import RecommandProduct from "../Recommand/RecommandProduct"
 
@@ -39,7 +38,6 @@ function Detail() {
 
   const {asin} = useParams();
   const Products = ProductDetailPage(asin);
-  // const recommandAsins = ProductDetailPage(asin);
 
   return (<>
     <div>
@@ -47,9 +45,6 @@ function Detail() {
         <div className='recommendation'>
             <h2> 추천 제품: </h2>
             <RecommandProduct asin={asin}/>
-            {/* {recommandAsins && recommandAsins.map((recommandAsin)=> (
-            <RecommandProductsDetail recommandAsin={recommandAsin}/>
-            ))} */}
     </div>
     </div>
   </>);
