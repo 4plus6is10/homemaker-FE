@@ -13,7 +13,6 @@ const Product = (props) => {
                 <img className="card-img" src={props.imglink} />
               </div>
               <div className="card-content" key={props.asin}>
-                {/* <img src={`/showImage?asin=${props.asin}.png`} width = "70%" height = "70%"/> */}
                 <h1 className="card-name" >{props.name}</h1>
                 <h3 className="card-price">price: $ {props.price}</h3>
                 <p className="card-category">Category : {props.category}</p>

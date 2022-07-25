@@ -6,7 +6,6 @@ import Footer from './Footer/Footer';
 import SearchResult from './Search/SearchResult'
 import Detail from './DetailProductPage/Detail';
 import Checkout from "./Cart/Checkout"
-import Product from './Product/Product';
 import Main from './Main';
 
 
@@ -20,7 +19,6 @@ function App() {
           <Route path="/search" element={<SearchResult/>} />
           <Route path="/products/:asin" element={<Detail/>} />
           <Route path="/cart" element={<Checkout/>} />
-          {/* <Route path="/detail" element={<Detail/>} /> */}
         </Routes>
       </div>
       <Footer />

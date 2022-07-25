@@ -24,8 +24,9 @@ function RecommandProduct() {
 
     return (
         <div>
+            {/* {recommandAsins} */}
             {/* <Suspense fallback={<div>loading...</div>}> */}
-                <RecommandProductsDetail asin={asin}/>
+                <RecommandProductsDetail recommandAsins={recommandAsins}/>
                 {/* <RecommandProductsDetail /> */}
             {/* </Suspense> */}
         </div>
